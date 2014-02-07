@@ -11,16 +11,12 @@ module IrcLogParser
       parse_logs
     end
 
-#     def to_json
-#       JSON.generate self
-#     end
-
     private
     def parse_logs
       @logs.each do |log|
         begin
           self << parse(log)
-        rescue ParseException => e
+        rescue UnknownTypeError => e
         end
       end
     end

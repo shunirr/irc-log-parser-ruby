@@ -13,7 +13,7 @@ module IrcLogParser
       if network and channel and text and time and nick
         new(network:network, channel:channel, text:text, time:time, nick:nick, is_notice:is_notice)
       else
-        raise ParseException.new
+        raise UnknownTypeError.new
       end
     end
   end
