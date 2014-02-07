@@ -22,7 +22,7 @@ Or install it yourself as:
 require 'irc-log-parser'
 ```
 
-Load irc logs.
+Parse your IRC logs.
 
 ```ruby
 # tiarra
@@ -31,6 +31,8 @@ logs = IrcLogParser::Logs.new(:tiarra, '~/tiarra/logs/#channel@network/2014.01.0
 # znc
 logs = IrcLogParser::Logs.new(:znc, "~/.znc/moddata/log/shunirr_network_\#channel_20140101.log")
 ```
+
+Export to JSON and LTSV.
 
 ```ruby
 logs[0].to_json
