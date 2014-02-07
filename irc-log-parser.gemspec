@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = IrcLogParser::VERSION
   spec.authors       = ["shunirr"]
   spec.email         = ["m@s5r.jp"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{IrcLogParser}
+  spec.summary       = %q{IrcLogParser}
   spec.homepage      = ""
   spec.license       = "MIT"
 
