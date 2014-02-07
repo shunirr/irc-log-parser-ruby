@@ -26,15 +26,15 @@ module IrcLogParser
       "is_notice:#{@is_notice}\t"
     end
 
-    def to_json
-      {
+    def to_json(*args)
+      JSON.generate({
         network:   @network,
         channel:   @channel,
         time:      @time,
         nick:      @nick,
         text:      @text,
         is_notice: @is_notice,
-      }.to_json
+      })
     end
 
     def to_s

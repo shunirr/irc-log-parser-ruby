@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = IrcLogParser::VERSION
   spec.authors       = ["shunirr"]
   spec.email         = ["m@s5r.jp"]
-  spec.description   = %q{IrcLogParser}
-  spec.summary       = %q{IrcLogParser}
-  spec.homepage      = ""
+  spec.description   = %q{IrcLogParser is parsing tiarra and znc log.}
+  spec.summary       = %q{IrcLogParser is parsing tiarra and znc log.}
+  spec.homepage      = "https://github.com/shunirr/irc-log-parser-ruby"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

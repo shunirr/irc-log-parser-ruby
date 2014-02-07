@@ -1,4 +1,5 @@
 require 'date'
+require 'json'
 
 module IrcLogParser
   class Logs < Array
@@ -9,6 +10,10 @@ module IrcLogParser
       parse_path
       parse_logs
     end
+
+#     def to_json
+#       JSON.generate self
+#     end
 
     private
     def parse_logs

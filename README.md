@@ -1,6 +1,6 @@
 # IrcLogParser
 
-TODO: Write a gem description
+IrcLogParser is parsing tiarra and znc log.
 
 ## Installation
 
@@ -18,7 +18,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'irc-log-parser'
+```
+
+Load irc logs.
+
+```ruby
+# tiarra
+logs = IrcLogParser::Logs.new(:tiarra, '~/tiarra/logs/#channel@network/2014.01.01.txt')
+
+# znc
+logs = IrcLogParser::Logs.new(:znc, "~/.znc/moddata/log/shunirr_network_\#channel_20140101.log")
+```
+
+```ruby
+logs[0].to_json
+# => "{\"network\":\"network\",\"channel\":\"#channel\",\"time\":\"2014-01-01 00:00:00 +0900\",\"nick\":\"shunirr\",\"text\":\"Hello world\",\"is_notice\":false}"
+
+logs[0].to_ltsv
+# => "network:network\tchannel:#channel\ttime:2014-01-01 00:00:00 +0900\tnick:shunirr\ttext:Hello world\tis_notice:false\t"
+```
 
 ## Contributing
 
