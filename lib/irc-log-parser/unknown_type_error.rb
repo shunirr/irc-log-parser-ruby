@@ -1,4 +1,4 @@
 module IrcLogParser
-  class UnknownTypeError < Exception
+  class UnknownTypeError < StandardError
   end
 end
