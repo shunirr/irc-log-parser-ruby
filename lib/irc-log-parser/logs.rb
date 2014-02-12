@@ -11,6 +11,18 @@ module IrcLogParser
       parse_logs
     end
 
+    def network
+      @network
+    end
+
+    def date
+      @date
+    end
+
+    def channel
+      @channel
+    end
+
     private
     def parse_logs
       @logs.each do |log|
@@ -23,8 +35,8 @@ module IrcLogParser
 
     def load_file
       file = open(@path).read
-      file.encode "UTF-16BE", "UTF-8", invalid: :replace, undef: :replace, replace: '.'
-      file.encode "UTF-8"
+      file.force_encoding('UTF-8')
+      file = file.encode("UTF-16BE", "UTF-8", :invalid => :replace, :undef => :replace, :replace => '?').encode("UTF-8")
       @logs = file.split /(\n|\r|\r\n)/
     end
 
@@ -33,10 +45,10 @@ module IrcLogParser
       dirname  = File.dirname(@path).split('/').last
       case @type
       when :tiarra
-        @network = dirname.split('@').last
+        @channel, @network = dirname.split('@')
         @date = Date.parse filename
       when :znc
-        if /^\w+_(\w+)_(#?\w+)_(\d+)$/ =~ filename
+        if /^\w+_(\w+)_(#?.+)_(\d+)$/ =~ filename
           @network = $1
           @channel = $2
           @date = Date.parse $3
@@ -47,9 +59,13 @@ module IrcLogParser
     def parse(line)
       case @type
       when :tiarra
-        Tiarra.parse @network, @date, line
+        if @network and @date
+          Tiarra.parse @network, @date, line
+        end
       when :znc
-        Znc.parse @network, @channel, @date, line
+        if @network and @channel and @date
+          Znc.parse @network, @channel, @date, line
+        end
       end
     end
   end
