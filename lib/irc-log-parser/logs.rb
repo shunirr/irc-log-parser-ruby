@@ -37,7 +37,7 @@ module IrcLogParser
       file = open(@path).read
       file.force_encoding('UTF-8')
       file = file.encode("UTF-16BE", "UTF-8", :invalid => :replace, :undef => :replace, :replace => '?').encode("UTF-8")
-      @logs = file.split /(\n|\r|\r\n)/
+      @logs = file.split(/(\n|\r|\r\n)/)
     end
 
     def parse_path
@@ -48,10 +48,10 @@ module IrcLogParser
         @channel, @network = dirname.split('@')
         @date = Date.parse filename
       when :znc
-        if /^\w+_(\w+)_(#?.+)_(\d+)$/ =~ filename
-          @network = $1
-          @channel = $2
-          @date = Date.parse $3
+        if /^(\w+_)?(\w+)_(#?.+)_(\d+)$/ =~ filename
+          @network = $2
+          @channel = $3
+          @date = Date.parse $4
         end
       end
     end
